@@ -46,7 +46,7 @@ namespace FizzBuzz
         /// <param name="number"></param>
         static void PlayGame(int number)
         {
-            string checkMe = null;
+            string checkMe;
             int checkMeNumber;
             int currentNumber = number;
             int startingNumber = number;

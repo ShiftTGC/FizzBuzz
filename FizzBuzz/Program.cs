@@ -14,6 +14,7 @@ namespace FizzBuzz
             //Any number divisible by five by the word buzz.
             //Numbers divisible by 15 become fizz buzz.
             //A player who hesitates or makes a mistake is eliminated from the game.
+            //Wikipedia contributors. Fizz buzz [Internet]. Wikipedia, The Free Encyclopedia; 2021 Sep 25, 15:18 UTC [cited 2021 Oct 10]. Available from: https://en.wikipedia.org/w/index.php?title=Fizz_buzz&oldid=1046416644.
             Title();
             string input;
             while (true)
@@ -69,7 +70,11 @@ namespace FizzBuzz
                     "Any number divisible by five (5) by the word Buzz.\n" +
                     "Numbers divisible by fifteen (15) become FizzBuzz.\n" +
                     "A player who hesitates or makes a mistake is eliminated from the game.\n" +
-                    "(Although the playable version in this exe does not have a timer and technically no multiplayer.)");
+                    "(Although the playable version in this exe does not have a timer and technically no multiplayer.)\n" +
+                    "\n" +
+                    "Wikipedia contributors. Fizz buzz [Internet]. (Slightly modified)\n" +
+                    "Wikipedia, The Free Encyclopedia; 2021 Sep 25, 15:18 UTC [cited 2021 Oct 10].\n" +
+                    "Available from: https://en.wikipedia.org/w/index.php?title=Fizz_buzz&oldid=1046416644.");
                     Console.WriteLine("\n" +
                         "Click any button on your keyboard to return...");
                     Console.ReadKey();
@@ -126,7 +131,7 @@ namespace FizzBuzz
 
         /// <summary>
         /// Checks for Fizz, Buzz, FizzBuzz or if normal number shall be used or not.
-        /// Seperated for potential player-engagment game-mode in the future.
+        /// Separated for potential player-engagement game-mode in the future.
         /// </summary>
         /// <param name="finput"></param>
         public static string CheckFizzBuzz(int finput)
@@ -138,6 +143,9 @@ namespace FizzBuzz
             else return "useNumber";
         }
 
+        /// <summary>
+        /// Used to display the "Main Menu"/"Title Screen". No need to write it 10 times.
+        /// </summary>
         public static void Title()
         {
             Console.Clear();
@@ -148,10 +156,16 @@ namespace FizzBuzz
                 "\"Yes, I made this because of Tom Scott's FizzBuzz video.\"");
             Console.SetCursorPosition(0, 2);
         }
+        /// <summary>
+        /// Tells the user they have typed in something other than an integer and gives them a quick message if there is an error code
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="errorCode"></param>
         public static void IntegerError(string input, int errorCode)
         {
             Console.Clear();
             Console.WriteLine("ERROR: Oopsie woopsie, someone did a fucky wucky~ UwU\n");
+            if (errorCode == 0) { Console.WriteLine($"Unknown integer error. Tell the developer \"errorCode 0, {input}\"\n"); }
             if (errorCode == 1) { Console.WriteLine("Unlike the Main Menu, the \"Lowest Number\" & \"Biggest Number\" has to be integers.\n"); }
             if (errorCode == 2) { Console.WriteLine("Unlike the Main Menu, your starting number has to be an integer.\n"); }
             Console.WriteLine("" +
@@ -160,8 +174,14 @@ namespace FizzBuzz
                 "These are NOT integer(s).\n" +
                 "\n" +
                 "Press a key to try again, but please use integers this time...");
+            if (errorCode == 0) { Console.WriteLine("Due to it being an unknown integer error, program may crash\n"); }
             Console.ReadKey();
             Console.Clear();
         }
+        public static void IntegerError(string input)
+        { IntegerError(input, 0); }
+        public static void IntegerError()
+        { IntegerError("<no input>"); }
+
     }
 }
